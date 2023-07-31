@@ -25,23 +25,22 @@ const internalInitialState: UserState = {
 
 
 export const getUsers = createAsyncThunk<any[]>(
-  // export const getUsers = createAsyncThunk(
   'users/getall',
   async (_: any, thunkAPI) => {
-    try {
+    try {internalInitialState
       const res = await axios.get('/api/users/');
       const data: any[] = await res.data
-      // const data = await res.data as any[]
       return data
 
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error });
     }
-  });
+  }
+);
 
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: 'users',
   initialState: internalInitialState,
   reducers: {
     reset: () => internalInitialState,
