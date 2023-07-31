@@ -22,7 +22,7 @@ const Home: NextPageLayout = () => {
 
   return (
     <div>
-      <span>
+      <span className='text-red-400'>
         nextjs typescript
       </span>
 
