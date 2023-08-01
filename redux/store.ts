@@ -2,12 +2,14 @@ import { configureStore, Action, ThunkAction } from '@reduxjs/toolkit';
 
 import testSlice from './slices/testSlice';
 import daySlice from './slices/daySlice';
+import authSlice from './slices/authSlice';
 
 
 export const store = configureStore({
   reducer: {
     testReducer: testSlice,
-    dayReducer: daySlice
+    dayReducer: daySlice,
+    authReducer: authSlice
   },
 })
 

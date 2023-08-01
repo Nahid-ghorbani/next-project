@@ -21,7 +21,9 @@ const FirstButton = styled(Button)({
 
 export default function login() {
 
-  const [username, setUsername] = useState<string>('')
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
 
   return (
     <main className='flex h-full'>
@@ -30,22 +32,34 @@ export default function login() {
           <h1 className='text-2xl	font-sans'>LOGIN</h1>
           <h2 className='text-base	font-sans'> Lorem Ipsum is simply dummy </h2>
 
-          <TextField label="Username" id='username' sx={{ width: '80%', height: '40px', my: '20px', py: '12px' }}
-            onChange={(e) => setUsername(e.target.value)} />
-          <TextField type='password' label="Password" id='password' sx={{ width: '80%', height: '40px', my: '20px', py: '12px' }} />
+          <TextField
+            label="Username"
+            id='username'
+            sx={{ width: '80%', height: '40px', my: '20px', py: '12px' }}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <TextField
+            type='text'
+            label="Password"
+            id='password'
+            sx={{ width: '80%', height: '40px', my: '20px', py: '12px' }}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
           <FirstButton> Login </FirstButton>
           <div className='flex flex-row'>
             <div>Forgot your password?</div>
-            <Link href={'/reset-password'}>Click Here.</Link>
+            <Link href={'/auth/reset'}>Click Here.</Link>
           </div>
         </Box>
       </Box>
 
-      <Box sx={{ width: '50%', height: '100%', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', overflow: 'hidden'  }}>
+      <Box sx={{ width: '50%', height: '100%', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
         <Image src={someImage} alt='login' className='w-full h-full object-cover	' />
       </Box>
-      
+
     </main>
   );
 }

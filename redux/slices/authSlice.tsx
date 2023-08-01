@@ -1,14 +1,25 @@
 import { Draft, PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// idle , loading
+
+type Loading = 'idle'| 'loading' | null
+
 export interface authData {
-    username : string,
-    password: string 
+    username : string | null,
+    password: string |null,
+    id : number | null |string,
+    loading: Loading ,
+    error : any | null
+    
 }
 
 const internalInitialState: authData = {
     username: 'admin',
     password: 'admin',
+    loading: null,
+    error: null,
+    id: null
 }
 
 
@@ -31,9 +42,6 @@ export const authSlice = createSlice({
     initialState: internalInitialState,
     reducers: {
         reset: () => internalInitialState,
-        setAuthorization: (state : Draft<typeof internalInitialState>, action: PayloadAction<typeof internalInitialState>) => {
-            state.username = action.payload
-        }
     },
     // extraReducers(builder) {
 
@@ -41,3 +49,8 @@ export const authSlice = createSlice({
 
     // },
 })
+
+
+export const { reset } = authSlice.actions
+
+export default authSlice.reducer;
