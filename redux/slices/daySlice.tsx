@@ -3,6 +3,10 @@ import { idle } from "../../types/redux";
 import type { TIDLE, TLOADING } from '../../types/redux';
 // import axios from "axios";
 
+
+
+
+
 export interface DayState {
     day: boolean,
     error: null | any,
