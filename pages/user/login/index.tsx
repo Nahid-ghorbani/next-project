@@ -6,7 +6,7 @@ import someImage from 'public/login.jpg'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { styled } from '@mui/material/styles';
-import { useAppDispatch } from '../../../hooks/reduxTool';
+import { useAppDispatch, useAppSelector } from '../../../hooks/reduxTool';
 import {postLoginData} from '../../../redux/slices/authSlice';
 import mobileImage from 'public/select-product.jpg';
 
@@ -26,8 +26,12 @@ const FirstButton = styled(Button)({
 
 export default function login() {
 
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [username, setUsername] = useState<string>('kminchelle');
+  const [password, setPassword] = useState<string>('0lelplR ');
+
+  const err = useAppSelector(state => state.authReducer.error);
+
+  console.log('err :', err)
 
   const dispatch = useAppDispatch()
   const router = useRouter();
@@ -39,12 +43,18 @@ export default function login() {
     return true
   }
  
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const result = checkInputLength(username, password);
     if (result){
-      dispatch(postLoginData({username: username , password: password}));
+      const res = await dispatch(postLoginData({username: username , password: password})).unwrap();
+      if(err){
+        alert("error :", err);
+      }
       router.push('/')
-    } else {console.log("invalid")}
+    } else {
+      alert("invalid");
+      console.log("invalid")
+    }
   }    
 
   //  username: 'kminchelle',
